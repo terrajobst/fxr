@@ -1,0 +1,180 @@
+﻿Level,Assembly,Namespace,Type,Member,Kind,Implicit,Browser,Linux,FreeBSD,Android,IOS,MacOS,TvOS,WatchOS,Windows
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,DateAndTime,DateString.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,DateAndTime,TimeOfDay.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,DateAndTime,TimeString.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,DateAndTime,Today.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,FileSystem,ChDrive(char),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,FileSystem,ChDrive(string),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,FileSystem,CurDir(char),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,FileSystem,"Dir(string, FileAttribute)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,FileSystem,"Rename(string, string)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,Interaction,Beep(),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,Interaction,"DeleteSetting(string, string, string)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,Interaction,"GetAllSettings(string, string)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,Interaction,"GetObject(string, string)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,Interaction,"GetSetting(string, string, string, string)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,Interaction,"SaveSetting(string, string, string, string)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,Microsoft.VisualBasic.Core,Microsoft.VisualBasic,Strings,"StrConv(string, VbStrConv, int)",platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,Microsoft.Win32.Registry.AccessControl,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,Microsoft.Win32.Registry,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,Microsoft.Win32.SystemEvents,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Type,System.Configuration.ConfigurationManager,System.Configuration,DpapiProtectedConfigurationProvider,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,BufferHeight.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,BufferWidth.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,CursorSize.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,CursorVisible.get,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,Title.get,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,WindowHeight.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,WindowLeft.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,WindowTop.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,WindowWidth.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,"Beep(int, int)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,"MoveBufferArea(int, int, int, int, int, int)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,"MoveBufferArea(int, int, int, int, int, int, char, ConsoleColor, ConsoleColor)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,"SetBufferSize(int, int)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,"SetWindowPosition(int, int)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,"SetWindowSize(int, int)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,CapsLock,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Console,System,Console,NumberLock,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Data.OleDb,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Diagnostics.EventLog,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Diagnostics.PerformanceCounter,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,Process,MaxWorkingSet.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,Process,MinWorkingSet.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,Process,"Start(string, string, SecureString, string)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,Process,"Start(string, string, string, SecureString, string)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,ProcessStartInfo,Domain,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,ProcessStartInfo,LoadUserProfile,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,ProcessStartInfo,Password,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,ProcessStartInfo,PasswordInClearText,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,ProcessThread,PriorityLevel.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Diagnostics.Process,System.Diagnostics,ProcessThread,ProcessorAffinity,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.DirectoryServices.AccountManagement,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.DirectoryServices,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.IO.FileSystem.AccessControl,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.FileSystem,System.IO,File,Decrypt(string),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.FileSystem,System.IO,File,Encrypt(string),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.FileSystem,System.IO,FileInfo,Decrypt(),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.FileSystem,System.IO,FileInfo,Encrypt(),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.FileSystem.DriveInfo,System.IO,DriveInfo,VolumeLabel.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.MemoryMappedFiles,System.IO.MemoryMappedFiles,MemoryMappedFile,"CreateOrOpen(string, long)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.MemoryMappedFiles,System.IO.MemoryMappedFiles,MemoryMappedFile,"CreateOrOpen(string, long, MemoryMappedFileAccess)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.MemoryMappedFiles,System.IO.MemoryMappedFiles,MemoryMappedFile,"CreateOrOpen(string, long, MemoryMappedFileAccess, MemoryMappedFileOptions, HandleInheritability)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.MemoryMappedFiles,System.IO.MemoryMappedFiles,MemoryMappedFile,OpenExisting(string),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.MemoryMappedFiles,System.IO.MemoryMappedFiles,MemoryMappedFile,"OpenExisting(string, MemoryMappedFileRights)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.MemoryMappedFiles,System.IO.MemoryMappedFiles,MemoryMappedFile,"OpenExisting(string, MemoryMappedFileRights, HandleInheritability)",platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.IO.Pipes.AccessControl,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.Pipes,System.IO.Pipes,NamedPipeClientStream,NumberOfServerInstances,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.Pipes,System.IO.Pipes,PipeStream,WaitForPipeDrain(),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.IO.Pipes,System.IO.Pipes,PipeTransmissionMode,Message,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Management,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Net.Http.WinHttpHandler,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.HttpListener,System.Net,HttpListenerTimeoutManager,EntityBody.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.HttpListener,System.Net,HttpListenerTimeoutManager,HeaderWait.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.HttpListener,System.Net,HttpListenerTimeoutManager,MinSendBytesPerSecond.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.HttpListener,System.Net,HttpListenerTimeoutManager,RequestQueue.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,EnableCircularQueuing,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,Flush,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,AddressListChange,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,GetBroadcastAddress,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,AddressListQuery,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,QueryTargetPnpHandle,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,AsyncIO,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,AssociateHandle,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,MultipointLoopback,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,MulticastScope,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,SetQos,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,SetGroupQos,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,RoutingInterfaceChange,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,NamespaceChange,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,ReceiveAll,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,ReceiveAllMulticast,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,ReceiveAllIgmpMulticast,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,KeepAliveValues,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,AbsorbRouterAlert,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,UnicastInterface,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,LimitBroadcasts,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,BindToInterface,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,MulticastInterface,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,AddMulticastGroupOnInterface,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,DeleteMulticastGroupFromInterface,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,GetExtensionFunctionPointer,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,GetQos,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,GetGroupQos,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,TranslateHandle,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,RoutingInterfaceQuery,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,IOControlCode,AddressListSort,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,Socket,Socket(SocketInformation),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,Socket,DuplicateAndClose(int),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,Socket,SetIPProtectionLevel(IPProtectionLevel),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,TcpListener,AllowNatTraversal(bool),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,TransmitFileOptions,WriteBehind,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,TransmitFileOptions,UseSystemThread,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,TransmitFileOptions,UseKernelApc,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Net.Sockets,System.Net.Sockets,UdpClient,AllowNatTraversal(bool),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComAwareEventInfo,"AddEventHandler(object, Delegate)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComAwareEventInfo,"RemoveEventHandler(object, Delegate)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Type,System.Runtime.InteropServices,System.Runtime.InteropServices,ComEventsHelper,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Type,System.Runtime.InteropServices,System.Runtime.InteropServices,DispatchWrapper,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,AddRef(IntPtr),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,BindToMoniker(string),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"ChangeWrapperHandleStrength(object, bool)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"CreateAggregatedObject(IntPtr, object)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"CreateAggregatedObject<T>(IntPtr, T)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"CreateWrapperOfType(object, Type)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"CreateWrapperOfType<T, TWrapper>(T)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,FinalReleaseComObject(object),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetComInterfaceForObject(object, Type)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetComInterfaceForObject(object, Type, CustomQueryInterfaceMode)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetComInterfaceForObject<T, TInterface>(T)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetComObjectData(object, object)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetEndComSlot(Type),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetIDispatchForObject(object),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetIUnknownForObject(object),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetNativeVariantForObject(object, IntPtr)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetNativeVariantForObject<T>(T, IntPtr)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetObjectForIUnknown(IntPtr),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetObjectForNativeVariant(IntPtr),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetObjectForNativeVariant<T>(IntPtr),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetObjectsForNativeVariants(IntPtr, int)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetObjectsForNativeVariants<T>(IntPtr, int)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetStartComSlot(Type),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"GetTypedObjectForIUnknown(IntPtr, Type)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetTypeFromCLSID(Guid),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetTypeInfoName(ITypeInfo),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,GetUniqueObjectForIUnknown(IntPtr),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"QueryInterface(IntPtr, ref Guid, out IntPtr)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,Release(IntPtr),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,ReleaseComObject(object),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,Marshal,"SetComObjectData(object, object, object)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComWrappers,"GetOrCreateComInterfaceForObject(object, CreateComInterfaceFlags)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComWrappers,"GetOrCreateObjectForComInstance(IntPtr, CreateObjectFlags)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComWrappers,"GetOrRegisterObjectForComInstance(IntPtr, CreateObjectFlags, object)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComWrappers,RegisterForTrackerSupport(ComWrappers),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComWrappers,RegisterForMarshalling(ComWrappers),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComWrappers,"GetIUnknownImpl(out IntPtr, out IntPtr, out IntPtr)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Runtime.InteropServices,System.Runtime.InteropServices,ComWrappers.ComInterfaceDispatch,GetInstance<T>(ComInterfaceDispatch*),platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Security.AccessControl,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Security.Cryptography.Cng,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Type,System.Security.Cryptography.Csp,System.Security.Cryptography,CspKeyContainerInfo,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.Csp,System.Security.Cryptography,DSACryptoServiceProvider,"DSACryptoServiceProvider(int, CspParameters)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.Csp,System.Security.Cryptography,DSACryptoServiceProvider,DSACryptoServiceProvider(CspParameters),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.Csp,System.Security.Cryptography,DSACryptoServiceProvider,CspKeyContainerInfo,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.Csp,System.Security.Cryptography,PasswordDeriveBytes,"CryptDeriveKey(string, string, int, byte[])",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.Csp,System.Security.Cryptography,RC2CryptoServiceProvider,UseSalt.set,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.Csp,System.Security.Cryptography,RSACryptoServiceProvider,"RSACryptoServiceProvider(int, CspParameters)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.Csp,System.Security.Cryptography,RSACryptoServiceProvider,RSACryptoServiceProvider(CspParameters),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.Csp,System.Security.Cryptography,RSACryptoServiceProvider,CspKeyContainerInfo,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Security.Cryptography.OpenSsl,,,,platform-restricted,No,any,any,any,any,any,any,any,any,none
+assembly,System.Security.Cryptography.ProtectedData,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Security.Cryptography.X509Certificates,System.Security.Cryptography.X509Certificates,X509Chain,X509Chain(IntPtr),platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Security.Principal.Windows,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.ServiceProcess.ServiceController,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Threading.AccessControl,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Threading,System.Threading,EventWaitHandle,OpenExisting(string),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Threading,System.Threading,EventWaitHandle,"TryOpenExisting(string, out EventWaitHandle)",platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Threading,System.Threading,Semaphore,OpenExisting(string),platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Threading,System.Threading,Semaphore,"TryOpenExisting(string, out Semaphore)",platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Threading.Overlapped,,,,platform-specific,No,none,none,none,none,none,none,none,none,any
+Member,System.Threading.Thread,System.Threading,Thread,SetApartmentState(ApartmentState),platform-specific,No,none,none,none,none,none,none,none,none,any
+assembly,System.Windows.Extensions,,,,platform-specific,No,none,none,none,none,none,none,none,none,any

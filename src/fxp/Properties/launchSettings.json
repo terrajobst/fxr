@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HarvestPlatformSupport": {
+      "commandName": "Project",
+      "commandLineArgs": "P:\\runtime\\artifacts\\bin\\ref\\net5.0"
+    }
+  }
+}
