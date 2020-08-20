@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Csv.Excel", "Micr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.CodeAnalysis.IL", "Microsoft.CodeAnalysis.IL\Microsoft.CodeAnalysis.IL.csproj", "{FBC6C574-97F3-4278-9603-B3FDB7E1BBB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nullablestats", "nullablestats\nullablestats.csproj", "{81038D76-5F10-47A9-B1AA-949E2039B259}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FBC6C574-97F3-4278-9603-B3FDB7E1BBB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBC6C574-97F3-4278-9603-B3FDB7E1BBB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBC6C574-97F3-4278-9603-B3FDB7E1BBB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81038D76-5F10-47A9-B1AA-949E2039B259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81038D76-5F10-47A9-B1AA-949E2039B259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81038D76-5F10-47A9-B1AA-949E2039B259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81038D76-5F10-47A9-B1AA-949E2039B259}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

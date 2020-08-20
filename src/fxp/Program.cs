@@ -23,7 +23,7 @@ internal static class Program
 
         var options = new OptionSet()
             {
-                "Produces table that lists OS limitations for .NET APIs, harvested from",
+                "Produces a table that lists OS limitations for .NET APIs, harvested from",
                 "[SupportedOSPlatform] and [UnsupportedOSPlatform].",
                 { "o|out=", "Specifies the {path} to the output file", v => outputPath = v },
                 { "i|implicit", "Specifies wether APIs nested under platform-specific APIs should be included", v => includeImplicit = true},
