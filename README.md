@@ -6,7 +6,7 @@ This repo contains a Roslyn-based metadata analyzer. The root command is `fxr`.
 
 ### Usage
 
-You point the tool at a directory that contains a subdirector for each platform
+You point the tool at a directory that contains a subdirectory for each platform
 you want to analyze:
 
 ```text
