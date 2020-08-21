@@ -1,22 +1,39 @@
-# HarvestPlatformSupport
+# Roslyn-based metadata analzyer
+
+This repo contains a Roslyn-based metadata analyzer. The root command is `fxr`.
+
+## fxr nullablestats
+
+### Usage
+
+You point the tool at a directory that contains a subdirector for each platform
+you want to analyze:
+
+```text
+$ ./fxr nullablestats /platforms -o stats.csv
+```
+
+The -o variable is optional. If omitted, it will show the results in Excel.
+
+### fxr platform-compat
 
 This tool produces a list of .NET APIs that are platform specific. It does that
 by looking at the `[SupportedOSPlatform]` and `[UnsupportedOSPlatform]`
 attributes.
 
-## Usage
+### Usage
 
 You point the tool at the reference assemblies, such as
 
 ```text
-$ ./fxp /runtime/artifacts/bin/ref/net5.0 -o apis.csv
+$ ./fxr platform-compat /runtime/artifacts/bin/ref/net5.0 -o apis.csv
 ```
 
 The -o variable is optional. If omitted, it will show the results in Excel.
 
-## Report
+### Report
 
-See [apis.csv](apis.csv) for the current state.
+The resulting CSV/Excel report has the following shape:
 
 Column    | Description
 ----------|--------------------------------------------------------------
@@ -28,15 +45,3 @@ Member    | The member name of the annotated API
 Kind      | Indicates the type of annotation that was used: `platform-specific` means only specific OS are supported, `platform-restricted` means the API works on all platforms except the ones listed.
 Implicit  | Indicates whether the API was directly annotated (`No`) or whether its containing type or assembly was annotated (`Yes`).
 `<OS>`    | Indicates which OS versions the API is support on.
-
-## Differences from spec
-
-These annotations were mentioned in [the spec] but not present in .NET 5:
-
-* System.Security.Cryptography
-    - CspParameters
-* System.ServiceModel
-* System.ServiceModel.Channels
-* System.ServiceModel.Security
-
-[the spec]: https://github.com/dotnet/designs/blob/master/accepted/2020/windows-specific-apis/windows-specific-apis.md
