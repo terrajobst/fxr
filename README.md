@@ -6,11 +6,10 @@ This repo contains a Roslyn-based metadata analyzer. The root command is `fxr`.
 
 ### Usage
 
-You point the tool at a directory that contains a subdirectory for each platform
-you want to analyze:
+You point the tool at a directory with assemblies you want to analyze, such as
 
 ```text
-$ ./fxr nullablestats /platforms -o stats.csv
+$ ./fxr nullablestats /mystuff -o stats.csv
 ```
 
 The -o variable is optional. If omitted, it will show the results in Excel.
