@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.IL;
@@ -15,6 +14,7 @@ namespace fxr
     {
         private string _outputPath;
         private string _path;
+        private bool _byPlatform;
 
         public override string Name => "nullablestats";
 
@@ -24,6 +24,7 @@ namespace fxr
         {
             options
                 .Add("o|out=", "Specifies the {path} to the output file", v => _outputPath = v)
+                .Add("by-platform", "Specifies whether the path is assumed to have a subdirectory by platform. If omitted, it will find all assemblies in that folder and all children.", v => _byPlatform = true)
                 .Add("<>", v => _path = v)
             ;
         }
@@ -42,7 +43,7 @@ namespace fxr
                 return;
             }
 
-            var document = Run(_path);
+            var document = Run(_path, _byPlatform);
 
             if (string.IsNullOrEmpty(_outputPath))
                 document.ViewInExcel();
@@ -50,90 +51,108 @@ namespace fxr
                 document.Save(_outputPath);
         }
 
-        private static CsvDocument Run(string path)
+        private static CsvDocument Run(string path, bool byPlatform)
         {
-            var csvDocument = new CsvDocument("Fx", "Assembly", "Namespace", "Type", "Member", "CanBeAnnotated", "IsAnnotated");
+            var document = new CsvDocument("Fx",
+                                           "Assembly",
+                                           "Namespace",
+                                           "Type",
+                                           "Member",
+                                           "CanBeAnnotated",
+                                           "IsAnnotated");
 
-            using (var writer = csvDocument.Append())
+            using (var writer = document.Append())
             {
-                foreach (var fxDirectory in Directory.GetDirectories(path))
+                if (!byPlatform)
                 {
-                    var files = Directory.GetFiles(fxDirectory, "*.dll", SearchOption.AllDirectories);
-                    var context = MetadataContext.Create(files);
-                    var walker = new NullableWalker();
-                    var fxName = Path.GetFileName(fxDirectory);
-
-                    foreach (var type in context.GetTypes().Where(t => t.IsVisibleOutsideAssembly()))
-                        ProcessType(type);
-
-                    void ProcessType(INamedTypeSymbol type)
+                    Process(writer, path);
+                }
+                else
+                {
+                    foreach (var fxDirectory in Directory.GetDirectories(path))
                     {
-                        RecordApi(type);
-
-                        if (type.TypeKind == TypeKind.Delegate)
-                            return;
-
-                        foreach (var member in type.GetMembers())
-                        {
-                            if (!member.IsVisibleOutsideAssembly())
-                                continue;
-
-                            if (member.IsAccessor())
-                                continue;
-
-                            if (member is IMethodSymbol m)
-                                ProcessMethod(m);
-                            else if (member is IPropertySymbol p)
-                                ProcessProperty(p);
-                            else if (member is IFieldSymbol f)
-                                ProcessField(f);
-                            else if (member is IEventSymbol e)
-                                ProcessEvent(e);
-                            else if (member is INamedTypeSymbol t)
-                                ProcessType(t);
-                        }
-                    }
-
-                    void ProcessMethod(IMethodSymbol symbol)
-                    {
-                        walker.WalkMethod(symbol);
-                        RecordApi(symbol);
-                    }
-
-                    void ProcessField(IFieldSymbol symbol)
-                    {
-                        walker.WalkField(symbol);
-                        RecordApi(symbol);
-                    }
-
-                    void ProcessProperty(IPropertySymbol symbol)
-                    {
-                        walker.WalkProperty(symbol);
-                        RecordApi(symbol);
-                    }
-
-                    void ProcessEvent(IEventSymbol symbol)
-                    {
-                        walker.WalkEvent(symbol);
-                        RecordApi(symbol);
-                    }
-
-                    void RecordApi(ISymbol symbol)
-                    {
-                        writer.Write(fxName);
-                        writer.Write(symbol.GetAssemblyName());
-                        writer.Write(symbol.GetNamespaceName());
-                        writer.Write(symbol.GetTypeName());
-                        writer.Write(symbol.GetMemberName());
-                        writer.Write(walker.CanBeAnnotated ? "Yes" : "No");
-                        writer.Write(walker.IsAnnotated ? "Yes" : "No");
-                        writer.WriteLine();
-                        walker.Reset();
+                        Process(writer, fxDirectory);
                     }
                 }
             }
 
-            return csvDocument;
+            return document;
+        }
+
+        private static void Process(CsvWriter writer, string directory)
+        {
+            var fxName = Path.GetFileName(directory);
+            var files = Directory.GetFiles(directory, "*.dll", SearchOption.AllDirectories);
+            var context = MetadataContext.Create(files);
+            var walker = new NullableWalker();
+
+            foreach (var type in context.GetTypes().Where(t => t.IsVisibleOutsideAssembly()))
+                ProcessType(type);
+
+            void ProcessType(INamedTypeSymbol type)
+            {
+                RecordApi(type);
+
+                if (type.TypeKind == TypeKind.Delegate)
+                    return;
+
+                foreach (var member in type.GetMembers())
+                {
+                    if (!member.IsVisibleOutsideAssembly())
+                        continue;
+
+                    if (member.IsAccessor())
+                        continue;
+
+                    if (member is IMethodSymbol m)
+                        ProcessMethod(m);
+                    else if (member is IPropertySymbol p)
+                        ProcessProperty(p);
+                    else if (member is IFieldSymbol f)
+                        ProcessField(f);
+                    else if (member is IEventSymbol e)
+                        ProcessEvent(e);
+                    else if (member is INamedTypeSymbol t)
+                        ProcessType(t);
+                }
+            }
+
+            void ProcessMethod(IMethodSymbol symbol)
+            {
+                walker.WalkMethod(symbol);
+                RecordApi(symbol);
+            }
+
+            void ProcessField(IFieldSymbol symbol)
+            {
+                walker.WalkField(symbol);
+                RecordApi(symbol);
+            }
+
+            void ProcessProperty(IPropertySymbol symbol)
+            {
+                walker.WalkProperty(symbol);
+                RecordApi(symbol);
+            }
+
+            void ProcessEvent(IEventSymbol symbol)
+            {
+                walker.WalkEvent(symbol);
+                RecordApi(symbol);
+            }
+
+            void RecordApi(ISymbol symbol)
+            {
+                writer.Write(fxName);
+                writer.Write(symbol.GetAssemblyName());
+                writer.Write(symbol.GetNamespaceName());
+                writer.Write(symbol.GetTypeName());
+                writer.Write(symbol.GetMemberName());
+                writer.Write(walker.CanBeAnnotated ? "Yes" : "No");
+                writer.Write(walker.IsAnnotated ? "Yes" : "No");
+                writer.WriteLine();
+                walker.Reset();
+            }
         }
 
         private sealed class NullableWalker : TypeWalker
@@ -207,6 +226,7 @@ namespace fxr
                     case TypeKind.Module:
                     case TypeKind.Submission:
                     case TypeKind.TypeParameter:
+                    case TypeKind.Dynamic:
                         // Ignore
                         break;
                     case TypeKind.Array:
@@ -217,7 +237,6 @@ namespace fxr
                     case TypeKind.Enum:
                     case TypeKind.Interface:
                     case TypeKind.Struct:
-                    case TypeKind.Dynamic:
                         WalkNamedType((INamedTypeSymbol)symbol);
                         break;
                     case TypeKind.Pointer:
