@@ -59,7 +59,9 @@ namespace fxr
                                            "Type",
                                            "Member",
                                            "CanBeAnnotated",
-                                           "IsAnnotated");
+                                           "IsAnnotated",
+                                           "#CanBeAnnotated",
+                                           "#IsAnnotated");
 
             using (var writer = document.Append())
             {
@@ -150,6 +152,9 @@ namespace fxr
                 writer.Write(symbol.GetMemberName());
                 writer.Write(walker.CanBeAnnotated ? "Yes" : "No");
                 writer.Write(walker.IsAnnotated ? "Yes" : "No");
+                writer.Write(walker.CanBeAnnotated ? "1" : "0");
+                writer.Write(walker.IsAnnotated ? "1" : "0");
+
                 writer.WriteLine();
                 walker.Reset();
             }
