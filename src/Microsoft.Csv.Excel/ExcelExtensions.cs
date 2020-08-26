@@ -33,6 +33,9 @@ namespace Microsoft.Csv
 
         public static void ViewInExcel(this CsvDocument csvDocument)
         {
+            if (csvDocument is null)
+                throw new ArgumentNullException(nameof(csvDocument));
+
             AssertExcelIsInstalled();
 
             var a = new Application();
@@ -51,6 +54,12 @@ namespace Microsoft.Csv
 
         public static void SaveToExcel(this CsvDocument csvDocument, string fileName)
         {
+            if (csvDocument is null)
+                throw new ArgumentNullException(nameof(csvDocument));
+
+            if (fileName is null)
+                throw new ArgumentNullException(nameof(fileName));
+
             AssertExcelIsInstalled();
 
             var a = new Application();
@@ -126,6 +135,9 @@ namespace Microsoft.Csv
 
         public static CsvDocument FromExcel(string fileName)
         {
+            if (fileName is null)
+                throw new ArgumentNullException(nameof(fileName));
+
             AssertExcelIsInstalled();
 
             var csvFileName = GetTempCsvFile();
@@ -161,6 +173,15 @@ namespace Microsoft.Csv
 
         public static void WriteHyperlink(this CsvWriter writer, string url, string text, bool useFormula = true)
         {
+            if (writer is null)
+                throw new ArgumentNullException(nameof(writer));
+
+            if (url is null)
+                throw new ArgumentNullException(nameof(url));
+
+            if (text is null)
+                throw new ArgumentNullException(nameof(text));
+
             text = useFormula
                     ? $"=HYPERLINK(\"{url}\", \"{text}\")"
                     : text;

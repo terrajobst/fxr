@@ -38,7 +38,7 @@ namespace Microsoft.Csv
                 _textWriter.Dispose();
         }
 
-        public override void Write(string value)
+        public override void Write(string? value)
         {
             if (_valuesSeen)
                 _textWriter.Write(Settings.Delimiter);
@@ -57,7 +57,7 @@ namespace Microsoft.Csv
             }
         }
 
-        protected string EscapeValue(string value)
+        protected string EscapeValue(string? value)
         {
             if (value == null)
                 return string.Empty;

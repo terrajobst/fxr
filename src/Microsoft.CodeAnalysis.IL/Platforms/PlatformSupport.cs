@@ -103,15 +103,16 @@ namespace Microsoft.CodeAnalysis.IL.Platforms
             return sb.ToString();
         }
 
-        public static PlatformSupport Parse(ImmutableArray<AttributeData> attributes)
+        public static PlatformSupport? Parse(ImmutableArray<AttributeData> attributes)
         {
-            var supportedPlatforms = (List<Platform>)null;
-            var unsupportedPlatforms = (List<Platform>)null;
-            var obsoletedPlatforms = (List<Platform>)null;
+            var supportedPlatforms = (List<Platform>?)null;
+            var unsupportedPlatforms = (List<Platform>?)null;
+            var obsoletedPlatforms = (List<Platform>?)null;
 
             foreach (var attribute in attributes)
             {
-                if (attribute.ConstructorArguments.Length == 1 &&
+                if (attribute.AttributeClass != null &&
+                    attribute.ConstructorArguments.Length == 1 &&
                     attribute.ConstructorArguments[0].Kind == TypedConstantKind.Primitive &&
                     attribute.ConstructorArguments[0].Value is string platformName &&
                     attribute.NamedArguments.Length == 0)
@@ -164,13 +165,16 @@ namespace Microsoft.CodeAnalysis.IL.Platforms
             if (supportedPlatforms == null && unsupportedPlatforms == null && obsoletedPlatforms == null)
                 return null;
 
-            return new PlatformSupport((IEnumerable<Platform>) supportedPlatforms ?? Array.Empty<Platform>(),
-                                       (IEnumerable<Platform>) unsupportedPlatforms ?? Array.Empty<Platform>(),
-                                       (IEnumerable<Platform>) obsoletedPlatforms ?? Array.Empty<Platform>());
+            return new PlatformSupport((IEnumerable<Platform>?) supportedPlatforms ?? Array.Empty<Platform>(),
+                                       (IEnumerable<Platform>?) unsupportedPlatforms ?? Array.Empty<Platform>(),
+                                       (IEnumerable<Platform>?) obsoletedPlatforms ?? Array.Empty<Platform>());
         }
 
         public static ImmutableArray<string> GetPlatforms(Compilation compilation)
         {
+            if (compilation is null)
+                throw new ArgumentNullException(nameof(compilation));
+
             var operatingSystemType = compilation.GetTypeByMetadataName("System.OperatingSystem");
             if (operatingSystemType == null)
                 return ImmutableArray<string>.Empty;

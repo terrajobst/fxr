@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Csv.Excel", "Micr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.CodeAnalysis.IL", "Microsoft.CodeAnalysis.IL\Microsoft.CodeAnalysis.IL.csproj", "{FBC6C574-97F3-4278-9603-B3FDB7E1BBB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fxr", "fxr\fxr.csproj", "{A230FF60-D084-484E-93F5-2F9C6F0D27F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fxr", "fxr\fxr.csproj", "{A230FF60-D084-484E-93F5-2F9C6F0D27F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4A2F7FF4-55CE-437D-A8BB-50F6F12E6703}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

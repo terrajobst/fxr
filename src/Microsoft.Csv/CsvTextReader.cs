@@ -18,10 +18,13 @@ namespace Microsoft.Csv
         protected override void Dispose(bool disposing)
         {
             if (disposing)
+            {
                 _reader.Dispose();
+                _enumerator.Dispose();
+            }
         }
 
-        public override IEnumerable<string> Read()
+        public override IEnumerable<string>? Read()
         {
             if (!_enumerator.MoveNext())
                 return null;

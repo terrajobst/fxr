@@ -12,8 +12,8 @@ namespace fxr
 {
     internal sealed class NullableStatsCommand : ToolCommand
     {
-        private string _outputPath;
-        private string _path;
+        private string? _outputPath;
+        private string? _path;
         private bool _byPlatform;
 
         public override string Name => "nullablestats";
@@ -31,6 +31,12 @@ namespace fxr
 
         public override void Execute()
         {
+            if (_path == null)
+            {
+                Console.Error.WriteLine($"error must specify a path");
+                return;
+            }
+
             if (!Directory.Exists(_path))
             {
                 Console.Error.WriteLine($"error '{_path}' is not a directory'");

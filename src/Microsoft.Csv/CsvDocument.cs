@@ -9,7 +9,7 @@ namespace Microsoft.Csv
     public class CsvDocument
     {
         private readonly IList<string> _keys;
-        private readonly IList<IDictionary<string, string>> _rows;
+        private readonly IList<IDictionary<string, string?>> _rows;
 
         public CsvDocument(params string[] keys)
             : this((IEnumerable<string>)keys)
@@ -17,11 +17,11 @@ namespace Microsoft.Csv
         }
 
         public CsvDocument(IEnumerable<string> keys)
-            : this(keys.ToList(), new List<IDictionary<string, string>>())
+            : this(keys.ToList(), new List<IDictionary<string, string?>>())
         {
         }
 
-        private CsvDocument(IList<string> keys, IList<IDictionary<string, string>> rows)
+        private CsvDocument(IList<string> keys, IList<IDictionary<string, string?>> rows)
         {
             if (keys == null)
                 throw new ArgumentNullException("keys");
@@ -33,7 +33,7 @@ namespace Microsoft.Csv
             _rows = rows;
 
             Keys = new ReadOnlyCollection<string>(_keys);
-            Rows = new ReadOnlyCollection<IDictionary<string, string>>(rows);
+            Rows = new ReadOnlyCollection<IDictionary<string, string?>>(rows);
         }
 
         public static CsvDocument Parse(string data)
@@ -92,7 +92,7 @@ namespace Microsoft.Csv
             if (reader == null)
                 throw new ArgumentNullException("reader");
 
-            var rows = new List<IDictionary<string, string>>();
+            var rows = new List<IDictionary<string, string?>>();
             var headerData = reader.Read();
             var headerArray = headerData == null
                                   ? new string[0]
@@ -106,7 +106,7 @@ namespace Microsoft.Csv
                     var rowArray = rowData.ToArray();
                     var count = Math.Min(headerArray.Length, rowArray.Length);
 
-                    var row = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                    var row = new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
                     for (var i = 0; i < count; i++)
                     {
                         var key = headerArray[i];
@@ -194,6 +194,6 @@ namespace Microsoft.Csv
 
         public ReadOnlyCollection<string> Keys { get; private set; }
 
-        public ReadOnlyCollection<IDictionary<string, string>> Rows { get; private set; }
+        public ReadOnlyCollection<IDictionary<string, string?>> Rows { get; private set; }
     }
 }

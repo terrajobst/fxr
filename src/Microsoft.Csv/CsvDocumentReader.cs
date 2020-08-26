@@ -5,17 +5,17 @@ namespace Microsoft.Csv
     internal sealed class CsvDocumentReader : CsvReader
     {
         private readonly IList<string> _keys;
-        private readonly IList<IDictionary<string, string>> _rows;
+        private readonly IList<IDictionary<string, string?>> _rows;
         private int _currentRow;
 
-        public CsvDocumentReader(IList<string> keys, IList<IDictionary<string, string>> rows)
+        public CsvDocumentReader(IList<string> keys, IList<IDictionary<string, string?>> rows)
             : base(CsvSettings.Default)
         {
             _keys = keys;
             _rows = rows;
         }
 
-        public override IEnumerable<string> Read()
+        public override IEnumerable<string>? Read()
         {
             if (_currentRow >= _rows.Count)
                 return null;
@@ -25,7 +25,7 @@ namespace Microsoft.Csv
             for (var i = 0; i < _keys.Count; i++)
             {
                 var key = _keys[i];
-                result[i] = row[key];
+                result[i] = row[key] ?? string.Empty;
             }
             _currentRow++;
             return result;

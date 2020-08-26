@@ -22,10 +22,13 @@ namespace Microsoft.Csv
         {
         }
 
-        public abstract void Write(string value);
+        public abstract void Write(string? value);
 
-        public virtual void Write(IEnumerable<string> values)
+        public virtual void Write(IEnumerable<string?> values)
         {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
             foreach (var value in values)
                 Write(value);
         }
@@ -34,6 +37,9 @@ namespace Microsoft.Csv
 
         public virtual void WriteLine(IEnumerable<string> values)
         {
+            if (values is null)
+                throw new ArgumentNullException(nameof(values));
+
             foreach (var value in values)
                 Write(value);
 

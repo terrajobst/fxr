@@ -13,6 +13,9 @@ namespace Microsoft.CodeAnalysis.IL.Platforms
 
         public static Platform Parse(string text)
         {
+            if (text is null)
+                throw new ArgumentNullException(nameof(text));
+
             var versionStart = text.Length;
             while (versionStart > 0)
             {
@@ -31,7 +34,7 @@ namespace Microsoft.CodeAnalysis.IL.Platforms
             return new Platform(name, version);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Platform platform && Equals(platform);
         }
@@ -44,10 +47,7 @@ namespace Microsoft.CodeAnalysis.IL.Platforms
 
         public override int GetHashCode()
         {
-            var hashCode = 2112831277;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Version>.Default.GetHashCode(Version);
-            return hashCode;
+            return HashCode.Combine(Name, Version);
         }
 
         public int CompareTo(Platform other)

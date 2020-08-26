@@ -15,7 +15,7 @@ namespace fxr
 {
     internal sealed class PlatformCompatCommand : ToolCommand
     {
-        private string _outputPath;
+        private string? _outputPath;
         private bool _includeImplicit;
         private readonly List<string> _paths = new List<string>();
 
@@ -85,7 +85,7 @@ namespace fxr
             private readonly bool _includeImplicit;
             private readonly CsvDocument _csvDocument;
 
-            private CsvWriter _writer;
+            private CsvWriter _writer = null!;
 
             public Processor(IEnumerable<string> files, bool includeImplicit)
             {
@@ -182,7 +182,7 @@ namespace fxr
                 _writer.WriteLine();
             }
 
-            private (PlatformSupport, bool IsImplicit) GetPlatformSupport(ISymbol symbol)
+            private (PlatformSupport?, bool IsImplicit) GetPlatformSupport(ISymbol? symbol)
             {
                 var isImplicit = false;
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Microsoft.CodeAnalysis.IL
@@ -23,11 +24,17 @@ namespace Microsoft.CodeAnalysis.IL
 
         public static IEnumerable<INamedTypeSymbol> GetTypes(this MetadataContext context)
         {
+            if (context is null)
+                throw new ArgumentNullException(nameof(context));
+
             return context.Assemblies.SelectMany(a => a.GetTypes());
         }
 
         public static IEnumerable<INamedTypeSymbol> GetTypes(this IAssemblySymbol symbol)
         {
+            if (symbol is null)
+                throw new ArgumentNullException(nameof(symbol));
+
             var stack = new Stack<INamespaceSymbol>();
             stack.Push(symbol.GlobalNamespace);
 
@@ -60,6 +67,9 @@ namespace Microsoft.CodeAnalysis.IL
 
         public static bool IsVisibleOutsideAssembly(this ISymbol symbol)
         {
+            if (symbol is null)
+                throw new ArgumentNullException(nameof(symbol));
+
             switch (symbol.DeclaredAccessibility)
             {
                 case Accessibility.Protected:
@@ -75,7 +85,7 @@ namespace Microsoft.CodeAnalysis.IL
             }
         }
 
-        public static string GetAssemblyName(this ISymbol symbol)
+        public static string? GetAssemblyName(this ISymbol symbol)
         {
             if (symbol == null)
                 return null;
@@ -86,7 +96,7 @@ namespace Microsoft.CodeAnalysis.IL
                 return symbol.ContainingAssembly.GetAssemblyName();
         }
 
-        public static string GetNamespaceName(this ISymbol symbol)
+        public static string? GetNamespaceName(this ISymbol symbol)
         {
             if (symbol == null)
                 return null;
@@ -97,7 +107,7 @@ namespace Microsoft.CodeAnalysis.IL
                 return symbol.ContainingNamespace.GetNamespaceName();
         }
 
-        public static string GetTypeName(this ISymbol symbol)
+        public static string? GetTypeName(this ISymbol symbol)
         {
             if (symbol == null)
                 return null;
@@ -115,7 +125,7 @@ namespace Microsoft.CodeAnalysis.IL
             }
         }
 
-        public static string GetMemberName(this ISymbol symbol)
+        public static string? GetMemberName(this ISymbol symbol)
         {
             if (symbol == null)
                 return null;
