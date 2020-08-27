@@ -14,7 +14,7 @@ $ ./fxr nullablestats /mystuff -o stats.csv
 
 The -o variable is optional. If omitted, it will show the results in Excel.
 
-### fxr platform-compat
+## fxr platform-compat
 
 This tool produces a list of .NET APIs that are platform specific. It does that
 by looking at the `[SupportedOSPlatform]` and `[UnsupportedOSPlatform]`
