@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Microsoft.CodeAnalysis.IL
 {
@@ -137,12 +133,14 @@ namespace Microsoft.CodeAnalysis.IL
             return new Guid(hashBytes);
         }
 
-        public static string GetSyntax(this ISymbol symbol, bool includeAttributes = false)
+        public static string GetSyntax(this ISymbol symbol, bool includeAttributes = false, bool includeNullableAnnotations = false)
         {
             var syntaxWriter = new StringSyntaxWriter();
             var declarationWriter = new CSharpDeclarationWriter
             {
-                IncludeAttributes = includeAttributes
+                IncludeAttributes = includeAttributes,
+                IncludeNullableAnnotations = includeNullableAnnotations,
+                IncludeNonNullAnnotations = includeNullableAnnotations
             };
             declarationWriter.WriteDeclaration(symbol, syntaxWriter);
             return syntaxWriter.ToString();
@@ -239,6 +237,11 @@ namespace Microsoft.CodeAnalysis.IL
             }
         }
 
+        public static bool IsNullAnnotated(this IAssemblySymbol symbol)
+        {
+            return symbol.GetTypeByMetadataName("System.Runtime.CompilerServices.NullableAttribute") != null;
+        }
+
         public static IEnumerable<T> Ordered<T>(this IEnumerable<T> types)
             where T: ISymbol
         {
@@ -272,6 +275,23 @@ namespace Microsoft.CodeAnalysis.IL
             return true;
         }
 
+        public static Accessibility GetApiAccessibility(this ISymbol symbol)
+        {
+            switch (symbol.DeclaredAccessibility)
+            {
+                case Accessibility.ProtectedOrInternal:
+                    return Accessibility.Protected;
+                case Accessibility.ProtectedAndInternal:
+                case Accessibility.NotApplicable:
+                case Accessibility.Private:
+                case Accessibility.Protected:
+                case Accessibility.Internal:
+                case Accessibility.Public:
+                default:
+                    return symbol.DeclaredAccessibility;
+            }
+        }
+
         public static ImmutableArray<AttributeData> GetApiAttributes(this IMethodSymbol method)
         {
             if (method == null)
@@ -284,10 +304,6 @@ namespace Microsoft.CodeAnalysis.IL
         {
             var interfaces = type.Interfaces.Where(t => t.IsVisibleOutsideAssembly()).ToArray();
             Array.Sort(interfaces, ApiComparer.Instance);
-
-            if (type.Name == "IServiceCollection")
-                Debugger.Break();
-
             return interfaces.ToImmutableArray();
         }
     }

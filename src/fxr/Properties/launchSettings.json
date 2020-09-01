@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "fxr": {
+      "commandName": "Project",
+      "commandLineArgs": "syntaxcomp -r C:\\DDrive\\Downloads\\nullable-diff\\ref\\ -i C:\\DDrive\\Downloads\\nullable-diff\\impl -o C:\\DDrive\\Downloads\\nullable-diff\\diff.csv"
+    }
+  }
+}

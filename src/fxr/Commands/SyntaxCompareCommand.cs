@@ -74,10 +74,6 @@ namespace fxr
         {
             public ApiInfo(ISymbol symbol)
             {
-                AssemblyName = symbol.GetAssemblyName();
-                NamespaceName = symbol.GetNamespaceName();
-                TypeName = symbol.GetTypeName();
-                MemberName = symbol.GetMemberName();
             }
 
             public string? AssemblyName { get; set; }
@@ -90,55 +86,10 @@ namespace fxr
 
         private static CsvDocument Run(string refPath, string implPath)
         {
-            var infoByGuid = new Dictionary<Guid, ApiInfo>();
+            var refByGuid = new Dictionary<Guid, ISymbol>();
 
-            foreach (var type in GetTypes(refPath))
-            {
-                Index(type, s =>
-                {
-                    var info = new ApiInfo(s);
-                    info.RefSyntax = s.GetSyntax();
-                    infoByGuid.TryAdd(s.GetGuid(), info);
-                });
-            }
-
-            foreach (var type in GetTypes(implPath))
-            {
-                Index(type, s =>
-                {
-                    if (infoByGuid.TryGetValue(s.GetGuid(), out var info))
-                        info.ImplSyntax = s.GetSyntax();
-                });
-            }
-
-            static IEnumerable<INamedTypeSymbol> GetTypes(string directory)
-            {
-                var files = Directory.GetFiles(directory, "*.dll", SearchOption.AllDirectories);
-                var context = MetadataContext.Create(files);
-                return context.GetTypes().Where(t => t.IsVisibleOutsideAssembly());
-            }
-
-            void Index(INamedTypeSymbol type, Action<ISymbol> recorder)
-            {
-                recorder(type);
-
-                if (type.TypeKind == TypeKind.Delegate)
-                    return;
-
-                foreach (var member in type.GetMembers())
-                {
-                    if (!member.IsVisibleOutsideAssembly())
-                        continue;
-
-                    if (member.IsAccessor())
-                        continue;
-
-                    if (member is INamedTypeSymbol t)
-                        Index(t, recorder);
-                    else
-                        recorder(member);
-                }
-            }
+            var refApis = IndexAllApis(refPath);
+            var implApis = IndexAllApis(implPath);
 
             var document = new CsvDocument("Guid",
                                            "Assembly",
@@ -150,23 +101,76 @@ namespace fxr
 
             using (var writer = document.Append())
             {
-                foreach (var (id, info) in infoByGuid)
+                foreach (var (id, refApi) in refApis.OrderBy(kv => kv.Value, ApiComparer.Instance))
                 {
-                    if (string.Equals(info.RefSyntax, info.ImplSyntax, StringComparison.Ordinal))
-                        continue;
+                    if (implApis.TryGetValue(id, out var implApi))
+                    {
+                        var includeNullableAnnotations = refApi.ContainingAssembly.IsNullAnnotated() &&
+                                                         implApi.ContainingAssembly.IsNullAnnotated();
 
-                    writer.Write(id.ToString("N"));
-                    writer.Write(info.AssemblyName);
-                    writer.Write(info.NamespaceName);
-                    writer.Write(info.TypeName);
-                    writer.Write(info.MemberName);
-                    writer.Write(info.RefSyntax);
-                    writer.Write(info.ImplSyntax);
-                    writer.WriteLine();
+                        var assemblyName = refApi.GetAssemblyName();
+                        var namespaceName = refApi.GetNamespaceName();
+                        var typeName = refApi.GetTypeName();
+                        var memberName = refApi.GetMemberName();
+                        var refSyntax = refApi.GetSyntax(includeNullableAnnotations: includeNullableAnnotations);
+                        var implSyntax = implApi.GetSyntax(includeNullableAnnotations: includeNullableAnnotations);
+
+                        if (string.Equals(refSyntax, implSyntax, StringComparison.Ordinal))
+                            continue;
+
+                        writer.Write(id.ToString("N"));
+                        writer.Write(assemblyName);
+                        writer.Write(namespaceName);
+                        writer.Write(typeName);
+                        writer.Write(memberName);
+                        writer.Write(refSyntax);
+                        writer.Write(implSyntax);
+                        writer.WriteLine();
+                    }
                 }
             }
 
             return document;
+
+            static Dictionary<Guid, ISymbol> IndexAllApis(string directory)
+            {
+                var result = new Dictionary<Guid, ISymbol>();
+
+                foreach (var api in GetAllApis(directory))
+                    result.TryAdd(api.GetGuid(), api);
+
+                return result;
+            }
+
+            static IEnumerable<ISymbol> GetAllApis(string directory)
+            {
+                var files = Directory.GetFiles(directory, "*.dll", SearchOption.AllDirectories);
+                var context = MetadataContext.Create(files);
+                var stack = new Stack<ITypeSymbol>();
+
+                foreach (var type in context.GetTypes().Where(t => t.IsVisibleOutsideAssembly()))
+                    stack.Push(type);
+
+                while (stack.Count > 0)
+                {
+                    var type = stack.Pop();
+                    yield return type;
+
+                    foreach (var member in type.GetMembers())
+                    {
+                        if (!member.IsVisibleOutsideAssembly())
+                            continue;
+
+                        if (member.IsAccessor())
+                            continue;
+
+                        if (member is INamedTypeSymbol t)
+                            stack.Push(t);
+                        else
+                            yield return member;
+                    }
+                }
+            }
         }
     }
 }

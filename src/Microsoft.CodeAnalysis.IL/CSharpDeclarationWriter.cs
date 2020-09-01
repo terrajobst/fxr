@@ -12,6 +12,8 @@ namespace Microsoft.CodeAnalysis.IL
     internal class CSharpDeclarationWriter
     {
         public bool IncludeAttributes { get; set; }
+        public bool IncludeNullableAnnotations { get; set; }
+        public bool IncludeNonNullAnnotations { get; set; }
 
         public void WriteDeclaration(ISymbol symbol, SyntaxWriter writer)
         {
@@ -94,7 +96,7 @@ namespace Microsoft.CodeAnalysis.IL
         private void WriteClassDeclaration(INamedTypeSymbol type, SyntaxWriter writer)
         {
             WriteAttributeList(type.GetAttributes(), writer);
-            WriteAccessibility(type.DeclaredAccessibility, writer);
+            WriteAccessibility(type.GetApiAccessibility(), writer);
 
             writer.WriteSpace();
 
@@ -166,7 +168,7 @@ namespace Microsoft.CodeAnalysis.IL
         private void WriteStructDeclaration(INamedTypeSymbol type, SyntaxWriter writer)
         {
             WriteAttributeList(type.GetAttributes(), writer);
-            WriteAccessibility(type.DeclaredAccessibility, writer);
+            WriteAccessibility(type.GetApiAccessibility(), writer);
 
             writer.WriteSpace();
 
@@ -207,7 +209,7 @@ namespace Microsoft.CodeAnalysis.IL
         private void WriteInterfaceDeclaration(INamedTypeSymbol type, SyntaxWriter writer)
         {
             WriteAttributeList(type.GetAttributes(), writer);
-            WriteAccessibility(type.DeclaredAccessibility, writer);
+            WriteAccessibility(type.GetApiAccessibility(), writer);
 
             writer.WriteSpace();
             writer.WriteKeyword("interface");
@@ -241,7 +243,7 @@ namespace Microsoft.CodeAnalysis.IL
         private void WriteDelegateDeclaration(INamedTypeSymbol type, SyntaxWriter writer)
         {
             WriteAttributeList(type.GetAttributes(), writer);
-            WriteAccessibility(type.DeclaredAccessibility, writer);
+            WriteAccessibility(type.GetApiAccessibility(), writer);
 
             writer.WriteSpace();
             writer.WriteKeyword("delegate");
@@ -261,7 +263,7 @@ namespace Microsoft.CodeAnalysis.IL
         private void WriteEnumDeclaration(INamedTypeSymbol type, SyntaxWriter writer)
         {
             WriteAttributeList(type.GetAttributes(), writer);
-            WriteAccessibility(type.DeclaredAccessibility, writer);
+            WriteAccessibility(type.GetApiAccessibility(), writer);
 
             writer.WriteSpace();
             writer.WriteKeyword("enum");
@@ -287,7 +289,7 @@ namespace Microsoft.CodeAnalysis.IL
             }
 
             WriteAttributeList(field.GetAttributes(), writer);
-            WriteAccessibility(field.DeclaredAccessibility, writer);
+            WriteAccessibility(field.GetApiAccessibility(), writer);
 
             writer.WriteSpace();
 
@@ -345,7 +347,7 @@ namespace Microsoft.CodeAnalysis.IL
         {
             WriteAttributeList(method.GetAttributes(), writer);
             WriteAttributeList(method.GetReturnTypeAttributes(), "return", writer);
-            WriteAccessibility(method.DeclaredAccessibility, writer);
+            WriteAccessibility(method.GetApiAccessibility(), writer);
             writer.WriteSpace();
 
             if (method.IsStatic)
@@ -408,7 +410,7 @@ namespace Microsoft.CodeAnalysis.IL
         private void WritePropertyDeclaration(IPropertySymbol property, SyntaxWriter writer)
         {
             WriteAttributeList(property.GetAttributes(), writer);
-            WriteAccessibility(property.DeclaredAccessibility, writer);
+            WriteAccessibility(property.GetApiAccessibility(), writer);
             writer.WriteSpace();
             WriteTypeReference(property.Type, writer);
             writer.WriteSpace();
@@ -427,7 +429,8 @@ namespace Microsoft.CodeAnalysis.IL
 
             var getterAttributes = property.GetMethod!.GetApiAttributes();
             var setterAttributes = property.SetMethod!.GetApiAttributes();
-            var multipleLines = getterAttributes.Any() || setterAttributes.Any();
+            var multipleLines = IncludeAttributes &&
+                                (getterAttributes.Any() || setterAttributes.Any());
 
             if (!multipleLines)
             {
@@ -483,7 +486,7 @@ namespace Microsoft.CodeAnalysis.IL
         private void WriteEventDeclaration(IEventSymbol @event, SyntaxWriter writer)
         {
             WriteAttributeList(@event.GetAttributes(), writer);
-            WriteAccessibility(@event.DeclaredAccessibility, writer);
+            WriteAccessibility(@event.GetApiAccessibility(), writer);
             writer.WriteSpace();
             writer.WriteKeyword("event");
             writer.WriteSpace();
@@ -493,7 +496,8 @@ namespace Microsoft.CodeAnalysis.IL
 
             var adderAttributes = @event.AddMethod!.GetApiAttributes();
             var removerAttributes = @event.RemoveMethod!.GetApiAttributes();
-            var multipleLines = adderAttributes.Any() || removerAttributes.Any();
+            var multipleLines = IncludeAttributes &&
+                                (adderAttributes.Any() || removerAttributes.Any());
 
             if (!multipleLines)
             {
@@ -1034,11 +1038,13 @@ namespace Microsoft.CodeAnalysis.IL
             {
                 if (type.NullableAnnotation == NullableAnnotation.Annotated)
                 {
-                    writer.WritePunctuation("?");
+                    if (IncludeNullableAnnotations)
+                        writer.WritePunctuation("?");
                 }
                 else if (type.NullableAnnotation == NullableAnnotation.NotAnnotated)
                 {
-                    writer.WritePunctuation("!");
+                    if (IncludeNonNullAnnotations)
+                        writer.WritePunctuation("!");
                 }
             }
         }
