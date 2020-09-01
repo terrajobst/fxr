@@ -14,6 +14,20 @@ $ ./fxr nullablestats /mystuff -o stats.csv
 
 The -o variable is optional. If omitted, it will show the results in Excel.
 
+## fxr syntaxcomp
+
+### Usage
+
+You point the tool at a directory with reference assemblies and implementation
+assemblies. It produces a table for all APIs where the syntax between the two
+differ.
+
+```text
+ P:\fxr\fxr.cmd syntaxcomp -r D:\ref -i D:\impl -o D:\diff.csv
+ ```
+
+The -o variable is optional. If omitted, it will show the results in Excel.
+
 ## fxr platform-compat
 
 This tool produces a list of .NET APIs that are platform specific. It does that
