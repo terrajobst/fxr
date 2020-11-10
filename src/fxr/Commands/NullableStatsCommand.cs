@@ -256,6 +256,8 @@ namespace fxr
                     case TypeKind.FunctionPointer:
                         WalkFunctionPointer((IFunctionPointerTypeSymbol)symbol);
                         break;
+                    default:
+                        throw new Exception($"Unhandled case label {symbol.TypeKind}");
                 }
             }
 
@@ -263,12 +265,6 @@ namespace fxr
             {
                 foreach (var type in symbol.TypeArguments)
                     WalkType(type);
-
-                if (symbol.BaseType != null)
-                    WalkType(symbol.BaseType);
-
-                //foreach (var type in symbol.Interfaces)
-                //    WalkType(type);
             }
 
             protected virtual void WalkArray(IArrayTypeSymbol symbol)
