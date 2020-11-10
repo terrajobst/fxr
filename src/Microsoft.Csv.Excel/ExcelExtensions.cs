@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -13,7 +14,7 @@ namespace Microsoft.Csv
     {
         public static bool IsExcelInstalled()
         {
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) &&
+            return OperatingSystem.IsWindows() &&
                    Registry.ClassesRoot.OpenSubKey("Excel.Application") != null;
         }
 
@@ -37,6 +38,7 @@ namespace Microsoft.Csv
                 throw new ArgumentNullException(nameof(csvDocument));
 
             AssertExcelIsInstalled();
+            Debug.Assert(OperatingSystem.IsWindows());
 
             var a = new Application();
             try
@@ -61,6 +63,7 @@ namespace Microsoft.Csv
                 throw new ArgumentNullException(nameof(fileName));
 
             AssertExcelIsInstalled();
+            Debug.Assert(OperatingSystem.IsWindows());
 
             var a = new Application();
             try
